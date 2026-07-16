@@ -25,6 +25,7 @@ Milestones for MetronomeCPR. Dates are aspirational; scope is the commitment.
 ## v0.4 — Settings & cues *(current)*
 - [x] Feedback selector: beep / vibrate / both (on-device + phone app settings)
 - [x] Elapsed-time and compression counters (running screen)
+- [x] Second running page (UP/DOWN): CPR start time + GPS lat/lon + MGRS (Positioning permission)
 - [ ] Screen-on / backlight behavior during a session
 - Note: configurable rate / ratio was prototyped then removed — rates stay fixed per
   protocol for now. Revisit only if there's a clear need (see backlog).

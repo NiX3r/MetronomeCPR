@@ -41,8 +41,11 @@ Use at your own risk. See [`LICENSE`](LICENSE).
 2. Start the metronome.
 3. The watch emits a steady **beep** (tone) and/or **vibration** at the target compression rate.
 4. Optional cues help you track compression-to-ventilation cycles (e.g. 30:2).
-5. The running screen shows the **time CPR started** (wall-clock, for handover/records) and the
-   **elapsed** duration.
+5. The running screen has two pages, switched with **UP / DOWN**:
+   - **Beat page** (default) — beat indicator, PUSH/BREATHE cue, compression count, elapsed time.
+   - **Info page** — the **time CPR started** (wall-clock) plus **GPS lat/lon** and **MGRS**
+     coordinates, for handover / records / calling in a location.
+6. The rhythm runs on its own timer, so **beep/vibration never pause or drift when you switch pages**.
 
 ### Patient modes (defaults)
 

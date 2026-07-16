@@ -20,8 +20,11 @@ versions follow [Semantic Versioning](https://semver.org/).
     (`Attention has :playTone` / `:vibrate`), tracking compression/ventilation cycle position.
   - `MetronomeView` — high-contrast running screen (beat indicator, PUSH/BREATHE cue,
     compression count, elapsed time); `MetronomeDelegate` for START/STOP and BACK.
-- Running screen shows the **wall-clock time CPR was started** ("Start HH:MM") for handover/records,
-  alongside the elapsed timer.
+- Running screen is now **two pages**, switched with UP / DOWN (page dots at the bottom):
+  - **Beat page** (default) — beat indicator, PUSH/BREATHE, compression count, elapsed time.
+  - **Info page** — wall-clock **CPR start time**, **GPS lat/lon**, and **MGRS** coordinates
+    (needs the Positioning permission). Shows "Acquiring GPS…" until a fix.
+  The metronome timer is independent of the view, so tone/vibration keep running while paging.
 - Distinct feedback for compressions vs. ventilations (louder tone / longer buzz on breaths).
 - **Settings** — configurable feedback mode (beep / vibrate / both), editable both **on-device**
   (in-app Settings menu) and from the **phone** (Connect IQ app settings via `resources/settings/`).
