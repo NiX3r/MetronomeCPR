@@ -7,19 +7,21 @@ Milestones for MetronomeCPR. Dates are aspirational; scope is the commitment.
 - [x] Medical disclaimer
 - [x] CPR parameter reference (`docs/CPR-REFERENCE.md`)
 - [x] Contributing guide
-- [ ] Connect IQ project skeleton (`manifest.xml`, `monkey.jungle`, `source/`, `resources/`)
+- [x] Connect IQ project skeleton (`manifest.xml`, `monkey.jungle`, `source/`, `resources/`)
 
 ## v0.2 — Minimal metronome
-- [ ] Single hard-coded rate (110 /min)
-- [ ] Beep via `Attention.playTone`
-- [ ] Start / stop
-- [ ] Runs in the Connect IQ simulator + on real hardware — reference device **Instinct 2X Solar** (`instinct2x`)
+- [x] Beat rate (110 /min) via a repeating timer
+- [x] Beep via `Attention.playTone`
+- [x] Start / stop
+- [x] Compiles for the reference device **Instinct 2X Solar** (`instinct2x`)
+- [ ] Verified interactively in the Connect IQ simulator + on real hardware
 
 ## v0.3 — Patient modes + haptics
-- [ ] Mode picker: Newborn / Child / Adult
-- [ ] Newborn 3:1 cadence (90 comp + 30 breaths, 120 events/min)
-- [ ] Vibration via `Attention.vibrate`
-- [ ] Device capability detection (`Attention has :playTone` / `:vibrate`) with graceful fallback
+- [x] Mode picker: Newborn / Child / Adult
+- [x] Newborn 3:1 cadence (90 comp + 30 breaths, 120 events/min)
+- [x] Vibration via `Attention.vibrate`
+- [x] Device capability detection (`Attention has :playTone` / `:vibrate`) with graceful fallback
+- [ ] Distinct tone/vibe for compression vs. ventilation confirmed on-device
 
 ## v0.4 — Settings & cues
 - [ ] Configurable rate (100–120 /min)

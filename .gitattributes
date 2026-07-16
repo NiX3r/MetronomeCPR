@@ -1,2 +1,36 @@
-# Auto detect text files and perform LF normalization
+# Normalize line endings: store as LF, check out native.
 * text=auto
+
+# ─── Monkey C / Connect IQ sources — treat as text, force LF ──────────────
+*.mc        text eol=lf
+*.mss       text eol=lf
+*.jungle    text eol=lf
+manifest.xml text eol=lf
+
+# Resources (XML) — text, LF
+*.xml       text eol=lf
+
+# Docs
+*.md        text eol=lf
+*.txt       text eol=lf
+
+# ─── Binary assets — never normalize or diff as text ─────────────────────
+*.png       binary
+*.jpg       binary
+*.jpeg      binary
+*.gif       binary
+*.bmp       binary
+*.svg       text eol=lf
+*.ttf       binary
+*.fnt       binary
+
+# Build artifacts (usually git-ignored, but be safe if ever added)
+*.prg       binary
+*.iq        binary
+*.der       binary
+
+# Developer signing key must never be committed; if it ever is, mark binary
+developer_key binary
+
+# ─── Linguist: keep the repo classified as Monkey C ──────────────────────
+*.mc        linguist-language=Monkey-C

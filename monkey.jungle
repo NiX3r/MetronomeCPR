@@ -1,0 +1,4 @@
+# Connect IQ build configuration.
+# The default project layout (source/ and resources/) is picked up automatically;
+# we only need to point at the manifest here.
+project.manifest = manifest.xml
