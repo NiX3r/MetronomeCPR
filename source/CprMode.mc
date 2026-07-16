@@ -41,29 +41,19 @@ class CprMode {
     }
 
     // ── Factory helpers ──────────────────────────────────────────────────
-    // Adult / Child use the configurable rate + ratio (Settings); default
-    // 110/min 30:2 (60000/110 = 545 ms). Newborn (neonatal) is a fixed
-    // protocol: 3:1 at 120 events/min (90 comp + 30 breaths); 500 ms.
+    // Adult / Child: 100-120/min, 30:2. We use 110/min (60000/110 = 545 ms).
+    // Newborn (neonatal): 3:1 at 120 events/min (90 comp + 30 breaths); 500 ms.
 
     static function adult() as CprMode {
-        return fromSettings(:adult, "Adult");
+        return new CprMode(:adult, "Adult", 545, 30, 2, 110);
     }
 
     static function child() as CprMode {
-        return fromSettings(:child, "Child");
+        return new CprMode(:child, "Child", 545, 30, 2, 110);
     }
 
     static function newborn() as CprMode {
         return new CprMode(:newborn, "Newborn", 500, 3, 1, 120);
-    }
-
-    //! Build an Adult/Child mode from the current user settings.
-    hidden static function fromSettings(k, lbl) as CprMode {
-        var rate = Settings.compressionRate();
-        return new CprMode(k, lbl, 60000 / rate,
-                           Settings.compressionsPerCycle(),
-                           Settings.ventilationsPerCycle(),
-                           rate);
     }
 
     //! All modes in menu order.

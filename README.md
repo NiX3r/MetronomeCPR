@@ -69,21 +69,15 @@ Selectable in **Settings** (default: beep + vibrate):
 
 ## Settings
 
-Configurable two ways — both write the same values:
+One setting — **Feedback** (Beep / Vibrate / Beep + Vibrate) — configurable two ways, both writing
+the same value:
 
-- **On the watch:** open the app → **Settings** (last item in the patient-type menu). Each entry
-  cycles its value when you press START.
+- **On the watch:** open the app → **Settings** (last item in the patient-type menu). Press START to
+  cycle Beep → Vibrate → Beep + Vibrate.
 - **From the phone:** Connect IQ / Garmin Connect app → the installed app → the **settings gear**.
 
-| Setting | Values | Applies to |
-|---------|--------|-----------|
-| **Feedback** | Beep / Vibrate / Beep + Vibrate | all modes |
-| **Rate** | compressions per minute (60–150; watch cycles 100–120) | Adult, Child |
-| **Comp. per breath** | compressions before the breath cue (e.g. 30 or 15) | Adult, Child |
-| **Breaths per cycle** | ventilations per cycle (e.g. 2) | Adult, Child |
-
-**Newborn** stays on the fixed neonatal protocol (3:1 at 120 events/min) and ignores the rate/ratio
-settings — see [`docs/CPR-REFERENCE.md`](docs/CPR-REFERENCE.md).
+Each mode's rate and compression:ventilation ratio are fixed per protocol (see the
+[patient modes](#patient-modes-defaults) table and [`docs/CPR-REFERENCE.md`](docs/CPR-REFERENCE.md)).
 
 ---
 

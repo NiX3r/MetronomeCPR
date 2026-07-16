@@ -6,9 +6,6 @@
 
     <string id="SettingsTitle">Settings</string>
     <string id="SettingFeedback">Feedback</string>
-    <string id="SettingRate">Rate (/min)</string>
-    <string id="SettingCompressions">Comp. per breath</string>
-    <string id="SettingVentilations">Breaths per cycle</string>
 
     <string id="FeedbackBeep">Beep</string>
     <string id="FeedbackVibrate">Vibrate</string>

@@ -21,10 +21,10 @@ versions follow [Semantic Versioning](https://semver.org/).
   - `MetronomeView` — high-contrast running screen (beat indicator, PUSH/BREATHE cue,
     compression count, elapsed time); `MetronomeDelegate` for START/STOP and BACK.
 - Distinct feedback for compressions vs. ventilations (louder tone / longer buzz on breaths).
-- **Settings** — configurable feedback mode (beep / vibrate / both), compression rate, compressions
-  per breath, and breaths per cycle. Editable both **on-device** (in-app Settings menu) and from the
-  **phone** (Connect IQ app settings via `resources/settings/`). Adult/Child honor the rate + ratio;
-  Newborn stays on the fixed 3:1 neonatal protocol. Backed by a `Settings` module over CIQ properties.
+- **Settings** — configurable feedback mode (beep / vibrate / both), editable both **on-device**
+  (in-app Settings menu) and from the **phone** (Connect IQ app settings via `resources/settings/`).
+  Backed by a `Settings` module over CIQ properties. (Rate / ratio settings were prototyped and then
+  removed — each mode's rate stays fixed per protocol.)
 - App logo / store icon: `MetronomeCPR.png` (1254×1254) and `MetronomeCPR-small.png` (500×500).
 - `store/screenshots/` — five 176×176 Connect IQ Store screenshots.
 - `docs/PUBLISHING.md` — how to build the `.iq` package and submit to the Connect IQ Store.

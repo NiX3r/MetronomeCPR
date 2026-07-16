@@ -18,18 +18,6 @@ module Settings {
         return clamp(readNum("feedbackMode", FEEDBACK_BOTH), 0, 2);
     }
 
-    function compressionRate() {
-        return clamp(readNum("compressionRate", 110), 60, 150);
-    }
-
-    function compressionsPerCycle() {
-        return clamp(readNum("compressionsPerCycle", 30), 1, 50);
-    }
-
-    function ventilationsPerCycle() {
-        return clamp(readNum("ventilationsPerCycle", 2), 0, 10);
-    }
-
     //! Whether tone / vibration should fire, derived from feedbackMode.
     function useTone() {
         var m = feedbackMode();
