@@ -15,6 +15,10 @@ class ModeMenu extends Ui.Menu2 {
                 m.key,                         // identifier (Symbol)
                 null));
         }
+
+        // Settings entry (on-device configuration).
+        addItem(new Ui.MenuItem(
+            Ui.loadResource(Rez.Strings.MenuSettings), null, :settings, null));
     }
 }
 
@@ -26,12 +30,19 @@ class ModeMenuDelegate extends Ui.Menu2InputDelegate {
     }
 
     function onSelect(item) {
-        var mode = CprMode.byKey(item.getId());
+        var id = item.getId();
+
+        if (id == :settings) {
+            Ui.pushView(new SettingsMenu(), new SettingsMenuDelegate(), Ui.SLIDE_LEFT);
+            return;
+        }
+
+        var mode = CprMode.byKey(id);
         if (mode == null) {
             return;
         }
-        // Default feedback: tone + vibration (both, capability-guarded at play time).
-        var metro = new Metronome(mode, true, true);
+        // Feedback (beep / vibrate / both) comes from settings; capability-guarded at play time.
+        var metro = new Metronome(mode, Settings.useTone(), Settings.useVibe());
         Ui.pushView(new MetronomeView(metro), new MetronomeDelegate(metro), Ui.SLIDE_LEFT);
     }
 

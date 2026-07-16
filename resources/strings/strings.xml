@@ -2,4 +2,15 @@
 <strings>
     <string id="AppName">CPR Metronome</string>
     <string id="MenuTitle">Patient type</string>
+    <string id="MenuSettings">Settings</string>
+
+    <string id="SettingsTitle">Settings</string>
+    <string id="SettingFeedback">Feedback</string>
+    <string id="SettingRate">Rate (/min)</string>
+    <string id="SettingCompressions">Comp. per breath</string>
+    <string id="SettingVentilations">Breaths per cycle</string>
+
+    <string id="FeedbackBeep">Beep</string>
+    <string id="FeedbackVibrate">Vibrate</string>
+    <string id="FeedbackBoth">Beep + Vibrate</string>
 </strings>

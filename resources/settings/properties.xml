@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Default values for the app settings above. -->
+<properties>
+    <property id="feedbackMode" type="number">2</property>          <!-- 0=beep, 1=vibrate, 2=both -->
+    <property id="compressionRate" type="number">110</property>     <!-- compressions / min (Adult, Child) -->
+    <property id="compressionsPerCycle" type="number">30</property> <!-- compressions before breaths -->
+    <property id="ventilationsPerCycle" type="number">2</property>  <!-- breaths per cycle -->
+</properties>

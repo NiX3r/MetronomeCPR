@@ -24,11 +24,12 @@ Milestones for MetronomeCPR. Dates are aspirational; scope is the commitment.
 - [ ] Distinct tone/vibe for compression vs. ventilation confirmed on-device
 
 ## v0.4 — Settings & cues *(current)*
-- [ ] Configurable rate (100–120 /min)
-- [ ] Feedback selector: beep / vibrate / both
-- [ ] Compression-to-ventilation cycle cues (30:2, 15:2)
-- [ ] Optional elapsed-time and compression counters
+- [x] Configurable rate (60–150 /min; on-watch quick-cycle 100–120)
+- [x] Feedback selector: beep / vibrate / both (on-device + phone app settings)
+- [x] Compression-to-ventilation cycle cues (30:2, 15:2 via configurable ratio)
+- [x] Elapsed-time and compression counters (running screen)
 - [ ] Screen-on / backlight behavior during a session
+- [ ] Refresh main-menu sub-labels after an on-device settings change
 
 ## v1.0 — Broad coverage & release
 - [ ] Expand device target list in `manifest.xml` toward all CIQ watches

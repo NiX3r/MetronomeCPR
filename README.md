@@ -58,12 +58,32 @@ Each mode currently uses a fixed rate (in-app configuration is planned — see
 
 ## Feedback options
 
+Selectable in **Settings** (default: beep + vibrate):
+
 - **Beep only** — audible tone via the Connect IQ `Attention.playTone` API.
 - **Vibrate only** — silent haptic pulses via `Attention.vibrate` (useful in noisy environments).
 - **Beep + vibrate** — both together.
 
 > Not all Garmin devices have a speaker or a vibration motor. The app detects device capabilities at
 > runtime and falls back gracefully (see [Supported devices](#supported-devices)).
+
+## Settings
+
+Configurable two ways — both write the same values:
+
+- **On the watch:** open the app → **Settings** (last item in the patient-type menu). Each entry
+  cycles its value when you press START.
+- **From the phone:** Connect IQ / Garmin Connect app → the installed app → the **settings gear**.
+
+| Setting | Values | Applies to |
+|---------|--------|-----------|
+| **Feedback** | Beep / Vibrate / Beep + Vibrate | all modes |
+| **Rate** | compressions per minute (60–150; watch cycles 100–120) | Adult, Child |
+| **Comp. per breath** | compressions before the breath cue (e.g. 30 or 15) | Adult, Child |
+| **Breaths per cycle** | ventilations per cycle (e.g. 2) | Adult, Child |
+
+**Newborn** stays on the fixed neonatal protocol (3:1 at 120 events/min) and ignores the rate/ratio
+settings — see [`docs/CPR-REFERENCE.md`](docs/CPR-REFERENCE.md).
 
 ---
 
@@ -111,9 +131,12 @@ MetronomeCPR/
 │   ├── CprMode.mc             #   Per-mode rhythm model (rates / ratios)
 │   ├── Metronome.mc           #   Timer engine: tone + vibration, cycle tracking
 │   ├── MetronomeView.mc       #   Running-screen rendering
-│   └── MetronomeDelegate.mc   #   START/STOP + BACK input
+│   ├── MetronomeDelegate.mc   #   START/STOP + BACK input
+│   ├── Settings.mc            #   Settings module over CIQ properties
+│   └── SettingsMenu.mc        #   On-device settings menu + delegate
 ├── resources/
-│   ├── strings/strings.xml    #   App name, menu title
+│   ├── strings/strings.xml    #   App name, menu + settings labels
+│   ├── settings/              #   Phone app settings (settings.xml, properties.xml)
 │   └── drawables/             #   62×62 monochrome launcher icon (device 1bpp palette)
 └── store/
     └── screenshots/           # 176×176 store-listing screenshots

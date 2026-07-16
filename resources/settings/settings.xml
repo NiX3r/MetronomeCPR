@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Connect IQ app settings. These appear as the app's "settings" gear in the
+    Connect IQ mobile app / Garmin Connect, and (once changed) sync to the watch.
+    The same values can also be edited on-device via the in-app Settings menu.
+
+    Rate / compressions / breaths apply to Adult and Child modes. Newborn follows
+    the fixed neonatal protocol (3:1 at 120 events/min).
+-->
+<settings>
+    <setting propertyKey="@Properties.feedbackMode" title="@Strings.SettingFeedback">
+        <settingConfig type="list">
+            <listEntry value="0">@Strings.FeedbackBeep</listEntry>
+            <listEntry value="1">@Strings.FeedbackVibrate</listEntry>
+            <listEntry value="2">@Strings.FeedbackBoth</listEntry>
+        </settingConfig>
+    </setting>
+
+    <setting propertyKey="@Properties.compressionRate" title="@Strings.SettingRate">
+        <settingConfig type="numeric" min="60" max="150"/>
+    </setting>
+
+    <setting propertyKey="@Properties.compressionsPerCycle" title="@Strings.SettingCompressions">
+        <settingConfig type="numeric" min="1" max="50"/>
+    </setting>
+
+    <setting propertyKey="@Properties.ventilationsPerCycle" title="@Strings.SettingVentilations">
+        <settingConfig type="numeric" min="0" max="10"/>
+    </setting>
+</settings>
