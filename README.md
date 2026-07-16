@@ -47,6 +47,16 @@ Use at your own risk. See [`LICENSE`](LICENSE).
      coordinates, for handover / records / calling in a location.
 6. The rhythm runs on its own timer, so **beep/vibration never pause or drift when you switch pages**.
 
+**Controls (Instinct 2X Solar):**
+
+| Button(s) | Action |
+|-----------|--------|
+| **GPS** (ENTER) | Start the metronome (single press never stops it) |
+| **UP / DOWN** | Switch between the beat page and the info page |
+| **GPS + ABC held together** | **Stop CPR** and return to the menu — two buttons on opposite sides, to prevent accidental stops |
+
+Plain **BACK** is intentionally ignored while running, so the session can't be closed by mistake.
+
 ### Patient modes (defaults)
 
 | Mode       | Target rate        | Notes                                   |

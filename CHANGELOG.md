@@ -25,6 +25,9 @@ versions follow [Semantic Versioning](https://semver.org/).
   - **Info page** — wall-clock **CPR start time**, **GPS lat/lon**, and **MGRS** coordinates
     (needs the Positioning permission). Shows "Acquiring GPS…" until a fix.
   The metronome timer is independent of the view, so tone/vibration keep running while paging.
+- **Accidental-stop protection:** the metronome can only be stopped by holding **GPS + ABC**
+  together (ENTER + DOWN — opposite sides of the Instinct 2X). A single GPS press only *starts*;
+  plain BACK is ignored while running. The info page shows a "Stop: hold GPS+ABC" hint.
 - Distinct feedback for compressions vs. ventilations (louder tone / longer buzz on breaths).
 - **Settings** — configurable feedback mode (beep / vibrate / both), editable both **on-device**
   (in-app Settings menu) and from the **phone** (Connect IQ app settings via `resources/settings/`).

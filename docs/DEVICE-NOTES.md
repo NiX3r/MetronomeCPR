@@ -18,6 +18,19 @@ develop and test against a reference device first.
 > Resolution and exact capabilities should be confirmed against the Connect IQ simulator device
 > profile and `manifest.xml` once the SDK is installed.
 
+### Button → Connect IQ key mapping
+The device exposes 5 keys (`up, down, enter, esc, menu`). Physical buttons:
+
+| Physical button | Side        | CIQ key     |
+|-----------------|-------------|-------------|
+| GPS             | upper right | `KEY_ENTER` |
+| SET / BACK      | lower right | `KEY_ESC`   |
+| CTRL            | upper left  | `KEY_UP`    |
+| ABC             | lower left  | `KEY_DOWN`  |
+
+The "stop CPR" combo uses **GPS + ABC** (`KEY_ENTER` + `KEY_DOWN`) — opposite sides, so it's hard
+to trigger by accident.
+
 ### UI implications
 - **Button-driven navigation only** — no tap targets. Map: mode select, start/stop, back.
 - **Monochrome, large glyphs** — the running rate and beat indicator must be readable at a glance

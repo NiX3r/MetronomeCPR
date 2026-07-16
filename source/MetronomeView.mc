@@ -127,6 +127,9 @@ class MetronomeView extends Ui.View {
         } else {
             dc.drawText(cx, h * 0.42, Gfx.FONT_TINY, "Acquiring GPS…", Gfx.TEXT_JUSTIFY_CENTER);
         }
+
+        // How to stop (single buttons are blocked to avoid accidental stops).
+        dc.drawText(cx, h * 0.83, Gfx.FONT_XTINY, "Stop: hold GPS+ABC", Gfx.TEXT_JUSTIFY_CENTER);
     }
 
     //! Two dots at the bottom: filled = current page.
