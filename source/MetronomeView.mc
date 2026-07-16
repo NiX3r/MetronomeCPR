@@ -101,24 +101,28 @@ class MetronomeView extends Ui.View {
         var LEFT = Gfx.TEXT_JUSTIFY_LEFT;
         var RIGHT = Gfx.TEXT_JUSTIFY_RIGHT;
 
-        // Start time fills the top-left space beside the sub-display.
+        // Stop instruction in the top-left corner (2 lines). Kept out of the
+        // narrow bottom of the round display, where it used to run off the edge
+        // and crowd the MGRS line.
+        dc.drawText(8, 8, Gfx.FONT_XTINY, "Stop: hold", LEFT);
+        dc.drawText(8, 26, Gfx.FONT_XTINY, "GPS + ABC", LEFT);
+
         var startStr = _metro.startTimeStr();
-        dc.drawText(10, 10, Gfx.FONT_XTINY, "Start", LEFT);
-        dc.drawText(10, 28, Gfx.FONT_SMALL, startStr == null ? "--:--" : startStr, LEFT);
+        dc.drawText(10, 66, Gfx.FONT_XTINY, "Start", LEFT);
+        dc.drawText(168, 66, Gfx.FONT_XTINY, startStr == null ? "--:--" : startStr, RIGHT);
 
         if (hasFix()) {
             var deg = _posInfo.position.toDegrees() as Lang.Array<Lang.Double>;
-            dc.drawText(10, 66, Gfx.FONT_XTINY, "Lat", LEFT);
-            dc.drawText(168, 66, Gfx.FONT_XTINY, deg[0].format("%.5f"), RIGHT);
-            dc.drawText(10, 88, Gfx.FONT_XTINY, "Lon", LEFT);
-            dc.drawText(168, 88, Gfx.FONT_XTINY, deg[1].format("%.5f"), RIGHT);
-            dc.drawText(10, 114, Gfx.FONT_XTINY,
+            dc.drawText(10, 86, Gfx.FONT_XTINY, "Lat", LEFT);
+            dc.drawText(168, 86, Gfx.FONT_XTINY, deg[0].format("%.5f"), RIGHT);
+            dc.drawText(10, 106, Gfx.FONT_XTINY, "Lon", LEFT);
+            dc.drawText(168, 106, Gfx.FONT_XTINY, deg[1].format("%.5f"), RIGHT);
+            dc.drawText(10, 126, Gfx.FONT_XTINY,
                         "MGRS " + _posInfo.position.toGeoString(Position.GEO_MGRS), LEFT);
         } else {
-            dc.drawText(88, 88, Gfx.FONT_TINY, "Acquiring GPS…", CENTER);
+            dc.drawText(88, 106, Gfx.FONT_TINY, "Acquiring GPS…", CENTER);
         }
 
-        dc.drawText(88, 148, Gfx.FONT_XTINY, "Stop: hold GPS+ABC", CENTER);
         drawSubElapsed(dc);
     }
 
