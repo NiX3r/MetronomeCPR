@@ -37,6 +37,16 @@ to trigger by accident.
   during a stressful situation.
 - **Both feedback modes available** — offer beep, vibrate, or both.
 
+### Display shape & the sub-display
+The Instinct 2 display is a **semi-octagon (176×176)** with a **small round sub-display inset in the
+top-right**. From the device profile, the sub-display occupies the box **x 113, y 1, 62×62** —
+i.e. a circle centered at **(144, 32), radius ≈ 31**. Safe main content is the **top-left** (x < 113)
+and everything **below y ≈ 66** (full width).
+
+The app's `Layout` class encodes this: it keeps the mode label top-left, the beat indicator centered
+but left of x 113, and places the **elapsed timer inside the sub-display**. Any device that is not a
+semi-octagon 176×176 uses a generic centered layout. Add new devices by adding a branch in `Layout`.
+
 ### Icons — two distinct assets
 - **On-watch launcher icon** (`resources/drawables/launcher_icon.png`): 62×62, must use only the
   device's 1bpp palette (black / white / transparent). We ship a white heart on transparent, sized

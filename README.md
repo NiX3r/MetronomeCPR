@@ -112,7 +112,11 @@ entries are added to widen coverage toward the "all watches" goal.
 Development targets the **Garmin Instinct 2X Solar** (`instinct2x`) first, since it's the hardware on
 hand for real-device testing. It supports **both tone and vibration**, and has a **monochrome MIP
 display (176×176), no touchscreen, 5 physical buttons** — so the UI is button-driven and high-contrast.
-Device-specific notes: [`docs/DEVICE-NOTES.md`](docs/DEVICE-NOTES.md).
+
+Its display is a **semi-octagon with a small round sub-display in the top-right**. The UI is
+per-device (`source/Layout.mc`): on the Instinct it keeps content clear of the sub-display and shows
+the **elapsed timer inside that small circle**. Other watches get a generic centered layout until a
+dedicated one is added. Device-specific notes: [`docs/DEVICE-NOTES.md`](docs/DEVICE-NOTES.md).
 
 ---
 
@@ -139,8 +143,9 @@ MetronomeCPR/
 │   ├── ModeMenu.mc            #   Patient-type Menu2 + delegate
 │   ├── CprMode.mc             #   Per-mode rhythm model (rates / ratios)
 │   ├── Metronome.mc           #   Timer engine: tone + vibration, cycle tracking
-│   ├── MetronomeView.mc       #   Running-screen rendering
-│   ├── MetronomeDelegate.mc   #   START/STOP + BACK input
+│   ├── MetronomeView.mc       #   Running-screen rendering (two pages)
+│   ├── MetronomeDelegate.mc   #   Button input (start, paging, two-button stop)
+│   ├── Layout.mc              #   Per-device screen geometry (Instinct 2 sub-display)
 │   ├── Settings.mc            #   Settings module over CIQ properties
 │   └── SettingsMenu.mc        #   On-device settings menu + delegate
 ├── resources/

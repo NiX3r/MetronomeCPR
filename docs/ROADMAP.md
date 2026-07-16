@@ -27,6 +27,7 @@ Milestones for MetronomeCPR. Dates are aspirational; scope is the commitment.
 - [x] Elapsed-time and compression counters (running screen)
 - [x] Second running page (UP/DOWN): CPR start time + GPS lat/lon + MGRS (Positioning permission)
 - [x] Accidental-stop protection: two-button hold (GPS + ABC) required to stop
+- [x] Per-device `Layout` abstraction; Instinct 2 layout uses the top-right sub-display (elapsed timer)
 - [ ] Screen-on / backlight behavior during a session
 - Note: configurable rate / ratio was prototyped then removed — rates stay fixed per
   protocol for now. Revisit only if there's a clear need (see backlog).
