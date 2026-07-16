@@ -14,25 +14,35 @@ Thanks for helping! This is a Garmin **Connect IQ** app written in **Monkey C**.
    openssl pkcs8 -topk8 -inform PEM -outform DER -in developer_key.pem \
      -out developer_key -nocrypt
    ```
-   The `developer_key` file is **git-ignored** — never commit it.
+   The `developer_key` file is **git-ignored** — never commit it. **Back it up**: the Connect IQ
+   Store ties your app's identity to this key, so losing it means you can't publish updates.
+   (On Windows without OpenSSL on `PATH`, use the copy bundled with Git:
+   `C:\Program Files\Git\usr\bin\openssl.exe`.)
 
 ## Build & run
 
-Once source exists (`manifest.xml`, `monkey.jungle`, `source/`):
-
 ```bash
-# Compile for the reference device (Instinct 2X Solar)
-monkeyc -d instinct2x -f monkey.jungle -o bin/MetronomeCPR.prg -y developer_key
-
-# Launch the simulator, then File → Open the .prg
-connectiq
+# Compile & sign for the reference device (Instinct 2X Solar)
+monkeyc -d instinct2x -f monkey.jungle -o bin/MetronomeCPR.prg -y developer_key -w
 ```
 
-In VS Code you can instead use the Monkey C extension's **Build** / **Run** commands and the
-`Ctrl/Cmd+Shift+P → Monkey C: Build Current Project` / `... Run` actions.
+`monkeyc` lives in the SDK's `bin/` (it is not on `PATH` by default; call it by full path, e.g.
+`…/connectiq-sdk-win-<version>/bin/monkeyc.bat`). In VS Code you can instead use the Monkey C
+extension's **Build** / **Run** commands (`Ctrl/Cmd+Shift+P → Monkey C: Build Current Project`).
 
 ### Sideload to a real watch
-Copy the built `.prg` to `GARMIN/APPS/` on the watch's USB mass-storage volume, then disconnect.
+1. Connect the watch by USB (mass-storage mode).
+2. Copy `bin/MetronomeCPR.prg` to `GARMIN/APPS/` on the watch volume.
+3. Safely eject and unplug — the app appears in the watch's app list after disconnect.
+
+To **remove** it, delete the `.prg` from `GARMIN/APPS/` and disconnect.
+
+### Package for the Connect IQ Store
+```bash
+# Build a signed .iq bundle for every product in manifest.xml
+monkeyc -e -o bin/MetronomeCPR.iq -f monkey.jungle -y developer_key -r -w
+```
+Upload the `.iq` at the developer dashboard — see [`docs/PUBLISHING.md`](docs/PUBLISHING.md).
 
 ## Coding guidelines
 

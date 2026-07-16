@@ -24,6 +24,13 @@ develop and test against a reference device first.
   during a stressful situation.
 - **Both feedback modes available** — offer beep, vibrate, or both.
 
+### Icons — two distinct assets
+- **On-watch launcher icon** (`resources/drawables/launcher_icon.png`): 62×62, must use only the
+  device's 1bpp palette (black / white / transparent). We ship a white heart on transparent, sized
+  to fit inside the Instinct's round icon frame.
+- **Store / branding logo** (`MetronomeCPR.png`, `MetronomeCPR-small.png`): full color; used for the
+  Connect IQ Store listing, not rendered on this device.
+
 ### Verifying capabilities at runtime
 Even though this device supports both, always guard hardware calls so the same build behaves on
 watches that lack a speaker or motor:

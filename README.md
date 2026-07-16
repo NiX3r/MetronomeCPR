@@ -1,11 +1,18 @@
 # MetronomeCPR
 
+<p align="center">
+  <img src="MetronomeCPR-small.png" alt="MetronomeCPR logo" width="140">
+</p>
+
 A **CPR metronome** for Garmin watches. Pick a patient type — **Newborn**, **Child**, or **Adult** —
 and the watch beeps and/or vibrates in the correct rhythm to help you pace chest compressions
 during cardiopulmonary resuscitation.
 
 Built for the [Garmin Connect IQ](https://developer.garmin.com/connect-iq/) platform (Monkey C),
-targeting as many watches as possible.
+targeting as many watches as possible. Reference device: **Garmin Instinct 2X Solar**.
+
+> **Status:** working watch-app — builds and runs on the Instinct 2X Solar. Single fixed rate per
+> mode; in-app settings and wider device coverage are on the [roadmap](docs/ROADMAP.md).
 
 ---
 
@@ -43,7 +50,8 @@ Use at your own risk. See [`LICENSE`](LICENSE).
 | **Child**   | 110 /min (100–120)     | 30:2 single rescuer · 15:2 two rescuers                      |
 | **Newborn** | 120 events/min         | Neonatal resuscitation uses a **3:1** ratio (90 comp + 30 breaths) — a distinct rhythm from infant BLS |
 
-Rate and cue behavior are configurable in app settings. Rationale and sources are documented in
+Each mode currently uses a fixed rate (in-app configuration is planned — see
+[roadmap](docs/ROADMAP.md)). Rationale and sources are documented in
 [`docs/CPR-REFERENCE.md`](docs/CPR-REFERENCE.md).
 
 ---
@@ -66,8 +74,9 @@ The goal is **all Garmin watches** that run Connect IQ. Actual behavior depends 
 - **Tone / beep** requires `Toybox.Attention has :playTone` and a device with a beeper/speaker.
 - **Vibration** requires `Toybox.Attention has :vibrate` and a vibration motor.
 
-Devices lacking one modality use the other; the concrete target list lives in
-[`manifest.xml`](manifest.xml) (added during implementation).
+Devices lacking one modality use the other. The concrete target list lives in
+[`manifest.xml`](manifest.xml) — it currently declares **`instinct2x`** only; more `<iq:product>`
+entries are added to widen coverage toward the "all watches" goal.
 
 ### Reference (first) device
 
@@ -82,41 +91,53 @@ Device-specific notes: [`docs/DEVICE-NOTES.md`](docs/DEVICE-NOTES.md).
 
 ```
 MetronomeCPR/
-├── README.md               # This file
-├── LICENSE                 # MIT
-├── CONTRIBUTING.md         # How to build & contribute
-├── CHANGELOG.md            # Notable changes per release
-├── .gitignore              # Connect IQ / Monkey C ignores
+├── README.md                 # This file
+├── LICENSE                   # MIT + not-a-medical-device notice
+├── CONTRIBUTING.md           # Build & contribution guide
+├── CHANGELOG.md              # Notable changes per release
+├── .gitignore / .gitattributes
+├── MetronomeCPR.png          # App logo / store icon (1254×1254, color)
+├── MetronomeCPR-small.png    # App logo (500×500, color)
 ├── docs/
-│   ├── CPR-REFERENCE.md    # Guideline sources & the numbers behind each mode
-│   ├── DEVICE-NOTES.md     # Per-device hardware constraints (reference: Instinct 2X Solar)
-│   └── ROADMAP.md          # Planned milestones
-├── manifest.xml            # (later) CIQ app id, permissions, device targets
-├── monkey.jungle           # (later) build config
-├── source/                 # (later) Monkey C (.mc) source
-└── resources/              # (later) strings, drawables, settings, menus
+│   ├── CPR-REFERENCE.md      # Guideline sources & the numbers behind each mode
+│   ├── DEVICE-NOTES.md       # Per-device hardware constraints (reference: Instinct 2X Solar)
+│   ├── PUBLISHING.md         # Building the .iq package & Connect IQ Store submission
+│   └── ROADMAP.md            # Planned milestones
+├── manifest.xml              # CIQ app id (UUID), permissions, device targets
+├── monkey.jungle             # Build config
+├── source/                   # Monkey C (.mc) source
+│   ├── MetronomeCprApp.mc     #   AppBase entry point
+│   ├── ModeMenu.mc            #   Patient-type Menu2 + delegate
+│   ├── CprMode.mc             #   Per-mode rhythm model (rates / ratios)
+│   ├── Metronome.mc           #   Timer engine: tone + vibration, cycle tracking
+│   ├── MetronomeView.mc       #   Running-screen rendering
+│   └── MetronomeDelegate.mc   #   START/STOP + BACK input
+├── resources/
+│   ├── strings/strings.xml    #   App name, menu title
+│   └── drawables/             #   62×62 monochrome launcher icon (device 1bpp palette)
+└── store/
+    └── screenshots/           # 176×176 store-listing screenshots
 ```
 
-Files marked *(later)* are added once implementation starts — this repo currently contains
-**documentation only**.
+> Not in git (ignored): `bin/` (build output — `.prg`, `.iq`) and `developer_key` (signing key).
 
 ---
 
-## Building (once source exists)
+## Building
 
-Requires the [Connect IQ SDK](https://developer.garmin.com/connect-iq/sdk/) and the
-**Monkey C** extension for VS Code.
+Requires the [Connect IQ SDK](https://developer.garmin.com/connect-iq/sdk/) and, optionally, the
+**Monkey C** extension for VS Code. A generated `developer_key` (git-ignored) signs the build.
 
 ```bash
-# Build for the reference device (Instinct 2X Solar) in the simulator
-monkeyc -d instinct2x -f monkey.jungle -o bin/MetronomeCPR.prg -y developer_key
+# Build & sign for the reference device (Instinct 2X Solar)
+monkeyc -d instinct2x -f monkey.jungle -o bin/MetronomeCPR.prg -y developer_key -w
 
-# Run the Connect IQ simulator, then load the .prg
+# Run in the Connect IQ simulator (or sideload bin/*.prg to GARMIN/APPS on the watch)
 connectiq
 ```
 
-A generated `developer_key` is required to sign builds; it is **git-ignored** and never committed.
-Full instructions: [`CONTRIBUTING.md`](CONTRIBUTING.md).
+Full setup (SDK path, key generation, sideloading, packaging for the store): see
+[`CONTRIBUTING.md`](CONTRIBUTING.md) and [`docs/PUBLISHING.md`](docs/PUBLISHING.md).
 
 ---
 
@@ -124,10 +145,10 @@ Full instructions: [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 See [`docs/ROADMAP.md`](docs/ROADMAP.md). High level:
 
-1. **v0.1** — docs & project scaffold *(current)*
-2. **v0.2** — minimal metronome: one fixed rate, beep only
-3. **v0.3** — three patient modes + vibration
-4. **v0.4** — settings (rate, feedback type, cycle cues), device capability fallbacks
+1. **v0.1** — docs & project scaffold ✅
+2. **v0.2** — minimal metronome (timer beat, tone, start/stop) ✅ *(pending on-device verification)*
+3. **v0.3** — three patient modes + vibration + capability fallbacks ✅
+4. **v0.4** — in-app settings (rate, feedback type, cycle cues) *(current)*
 5. **v1.0** — broad device coverage, Connect IQ Store submission
 
 ---
@@ -141,4 +162,4 @@ sourced and traceable in `docs/CPR-REFERENCE.md`.
 
 ## License
 
-[MIT](LICENSE) © MetronomeCPR contributors.
+[MIT](LICENSE) © 2026 Daniel Iliev.

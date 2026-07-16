@@ -23,7 +23,7 @@ Milestones for MetronomeCPR. Dates are aspirational; scope is the commitment.
 - [x] Device capability detection (`Attention has :playTone` / `:vibrate`) with graceful fallback
 - [ ] Distinct tone/vibe for compression vs. ventilation confirmed on-device
 
-## v0.4 — Settings & cues
+## v0.4 — Settings & cues *(current)*
 - [ ] Configurable rate (100–120 /min)
 - [ ] Feedback selector: beep / vibrate / both
 - [ ] Compression-to-ventilation cycle cues (30:2, 15:2)
@@ -34,8 +34,10 @@ Milestones for MetronomeCPR. Dates are aspirational; scope is the commitment.
 - [ ] Expand device target list in `manifest.xml` toward all CIQ watches
 - [ ] Per-device layout QA (round / semi-round / rectangle displays)
 - [ ] Battery / performance check for long sessions
-- [ ] Store listing assets (icon, screenshots, description)
-- [ ] Connect IQ Store submission
+- [x] Store listing icon/logo (`MetronomeCPR.png`, `MetronomeCPR-small.png`)
+- [x] Store screenshots (`store/screenshots/`, 176×176)
+- [ ] Store listing description (with medical disclaimer)
+- [ ] Connect IQ Store submission (`.iq` package — see `docs/PUBLISHING.md`)
 
 ## Backlog / ideas
 - [ ] Separate "Infant BLS" mode (100–120/min, 30:2 or 15:2) distinct from neonatal Newborn

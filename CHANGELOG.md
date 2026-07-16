@@ -20,7 +20,15 @@ versions follow [Semantic Versioning](https://semver.org/).
     (`Attention has :playTone` / `:vibrate`), tracking compression/ventilation cycle position.
   - `MetronomeView` — high-contrast running screen (beat indicator, PUSH/BREATHE cue,
     compression count, elapsed time); `MetronomeDelegate` for START/STOP and BACK.
+- Distinct feedback for compressions vs. ventilations (louder tone / longer buzz on breaths).
+- App logo / store icon: `MetronomeCPR.png` (1254×1254) and `MetronomeCPR-small.png` (500×500).
+- `store/screenshots/` — five 176×176 Connect IQ Store screenshots.
+- `docs/PUBLISHING.md` — how to build the `.iq` package and submit to the Connect IQ Store.
+- `.gitattributes` tuned for Monkey C (LF normalization, binary assets, Linguist).
+
+### Changed
+- Shrank the 62×62 monochrome launcher icon so the heart fits inside the Instinct's round icon frame.
 
 ### Notes
 - Compiles clean (no warnings) against Connect IQ SDK 9.2.0 for the Instinct 2X Solar.
-- Not yet verified interactively in the simulator / on-device.
+- Sideloaded to an Instinct 2X Solar; interactive behavior on real hardware still to be verified/tuned.
