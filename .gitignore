@@ -1,0 +1,39 @@
+# ─── Connect IQ / Monkey C ───────────────────────────────────────────────
+# Build output
+bin/
+gen/
+*.prg
+*.prg.debug.xml
+*.iq
+
+# Developer signing key — NEVER commit this
+developer_key
+developer_key.der
+*.der
+
+# Connect IQ / VS Code Monkey C extension caches
+.tmp/
+*.mssm
+
+# ─── Editors / IDEs ──────────────────────────────────────────────────────
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json.example
+.idea/
+*.iml
+
+# Eclipse (legacy CIQ plugin)
+.metadata/
+.settings/
+.project
+.classpath
+
+# ─── OS cruft ────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── Misc ────────────────────────────────────────────────────────────────
+*.log
+node_modules/
