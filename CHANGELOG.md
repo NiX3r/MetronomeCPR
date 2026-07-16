@@ -20,10 +20,12 @@ versions follow [Semantic Versioning](https://semver.org/).
     (`Attention has :playTone` / `:vibrate`), tracking compression/ventilation cycle position.
   - `MetronomeView` — high-contrast running screen (beat indicator, PUSH/BREATHE cue,
     compression count, elapsed time); `MetronomeDelegate` for START/STOP and BACK.
-- **Per-device layout** (`Layout`): the running screen positions elements from a device-specific
-  layout instead of assuming a plain centered screen. Instinct 2 family (semi-octagon 176×176) keeps
-  content clear of the **top-right sub-display** and uses that small round display for the **elapsed
-  timer**; the mode label sits top-left. Other devices fall back to a generic centered layout.
+- **Per-device layout** (`Layout` + device-specific drawing): the running screen adapts to the watch
+  instead of assuming a plain centered screen. The Instinct layout **uses the width** — beat indicator
+  on the left with cue/count on the right; info page shows coordinates as label-left / value-right rows
+  and the start time in the top-left. It keeps clear of the **top-right sub-display** and uses that
+  small round display for the **elapsed timer**. Other devices fall back to a generic centered layout.
+  (Detection also matches 176×176 directly, so the Instinct layout can't silently fall back.)
 - Running screen is now **two pages**, switched with UP / DOWN (page dots at the bottom):
   - **Beat page** (default) — beat indicator, PUSH/BREATHE, compression count, elapsed time.
   - **Info page** — wall-clock **CPR start time**, **GPS lat/lon**, and **MGRS** coordinates
