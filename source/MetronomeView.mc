@@ -31,7 +31,7 @@ class MetronomeView extends Ui.View {
         var mode = _metro.getMode();
 
         // Mode name (top).
-        dc.drawText(cx, h * 0.06, Gfx.FONT_SMALL, mode.label, Gfx.TEXT_JUSTIFY_CENTER);
+        dc.drawText(cx, h * 0.04, Gfx.FONT_SMALL, mode.label, Gfx.TEXT_JUSTIFY_CENTER);
 
         if (!_metro.isRunning()) {
             dc.drawText(cx, h * 0.40, Gfx.FONT_MEDIUM, "Press START", Gfx.TEXT_JUSTIFY_CENTER);
@@ -40,11 +40,17 @@ class MetronomeView extends Ui.View {
             return;
         }
 
+        // Wall-clock time CPR was started (for handover / records).
+        var startStr = _metro.startTimeStr();
+        if (startStr != null) {
+            dc.drawText(cx, h * 0.19, Gfx.FONT_XTINY, "Start " + startStr, Gfx.TEXT_JUSTIFY_CENTER);
+        }
+
         var isComp = (_metro.getLastEvent() == CprMode.EVENT_COMPRESSION);
 
         // Beat indicator: filled circle on compression, ring on ventilation.
-        var r = w * 0.15;
-        var beatY = h * 0.37;
+        var r = w * 0.14;
+        var beatY = h * 0.42;
         if (isComp) {
             dc.fillCircle(cx, beatY, r);
         } else {
@@ -53,16 +59,16 @@ class MetronomeView extends Ui.View {
         }
 
         // Cue word.
-        dc.drawText(cx, h * 0.58, Gfx.FONT_SMALL,
+        dc.drawText(cx, h * 0.62, Gfx.FONT_SMALL,
                     isComp ? "PUSH" : "BREATHE", Gfx.TEXT_JUSTIFY_CENTER);
 
         // Compression count within the current cycle.
-        dc.drawText(cx, h * 0.74, Gfx.FONT_TINY,
+        dc.drawText(cx, h * 0.77, Gfx.FONT_TINY,
                     _metro.compressionsThisCycle().toString() + " / " + mode.compressions.toString(),
                     Gfx.TEXT_JUSTIFY_CENTER);
 
         // Elapsed time (bottom).
-        dc.drawText(cx, h * 0.87, Gfx.FONT_XTINY, formatElapsed(), Gfx.TEXT_JUSTIFY_CENTER);
+        dc.drawText(cx, h * 0.89, Gfx.FONT_XTINY, formatElapsed(), Gfx.TEXT_JUSTIFY_CENTER);
     }
 
     hidden function formatElapsed() {

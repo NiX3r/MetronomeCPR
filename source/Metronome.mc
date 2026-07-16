@@ -15,6 +15,8 @@ class Metronome {
     hidden var _cycleCount;    // number of completed cycles
     hidden var _lastEvent;     // most recent event type
     hidden var _startMs;       // session start (ms), 0 when never started
+    hidden var _startHour;     // wall-clock hour at start, -1 when never started
+    hidden var _startMin;      // wall-clock minute at start
     hidden var _useTone;
     hidden var _useVibe;
 
@@ -32,6 +34,8 @@ class Metronome {
         _cycleCount = 0;
         _lastEvent = CprMode.EVENT_COMPRESSION;
         _startMs = 0;
+        _startHour = -1;
+        _startMin = -1;
     }
 
     // ── Queries used by the view ─────────────────────────────────────────
@@ -50,12 +54,21 @@ class Metronome {
         return (_startMs == 0) ? 0 : (System.getTimer() - _startMs);
     }
 
+    //! Wall-clock time CPR was started, as "HH:MM" (24h); null if never started.
+    function startTimeStr() {
+        if (_startHour < 0) { return null; }
+        return _startHour.format("%02d") + ":" + _startMin.format("%02d");
+    }
+
     // ── Control ──────────────────────────────────────────────────────────
     function start() {
         if (_running) { return; }
         resetState();
         _running = true;
         _startMs = System.getTimer();
+        var c = System.getClockTime();               // snapshot wall-clock start time
+        _startHour = c.hour;
+        _startMin = c.min;
         onBeat();                                    // instant first beat
         _timer.start(method(:onBeat), _mode.intervalMs, true);
     }
