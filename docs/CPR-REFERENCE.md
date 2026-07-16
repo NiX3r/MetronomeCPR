@@ -14,7 +14,7 @@ the disclaimer in the [README](../README.md).
 All ages of **basic life support** (BLS) share the same compression **rate**:
 
 - **100–120 compressions per minute** for adults, children, and infants.
-- MetronomeCPR uses **110 /min** as the default midpoint for Adult and Child modes.
+- MetronomeCPR uses **110 /min** as the default midpoint for all three modes (Adult, Child, Infant).
 
 At 110 /min the beep interval is `60000 ms / 110 ≈ 545 ms`.
 
@@ -35,19 +35,17 @@ Depth is displayed as a reminder only; the watch has no way to sense compression
 | Adult, single or two rescuers     | 30:2  | 30 compressions, then 2 breaths                   |
 | Child / infant, single rescuer    | 30:2  |                                                   |
 | Child / infant, two rescuers      | 15:2  |                                                   |
-| **Newborn (neonatal, at birth)**  | 3:1   | 90 compressions + 30 breaths = **120 events/min** |
 
-### Why "Newborn" is a distinct mode
+The app's three modes — **Adult, Child, Infant** — all pace a **110 /min, 30:2** rhythm. They share
+the same compression rate; the mode label reminds the rescuer of the age-specific **depth** and
+two-rescuer ratio (see tables above), which the metronome itself cannot enforce.
 
-Newborn resuscitation immediately after birth (neonatal) is intentionally different from infant BLS:
+### Note — neonatal resuscitation (not currently a mode)
 
-- It uses a **3:1 compression-to-ventilation ratio**.
-- The target is **120 events per minute** — i.e. **90 compressions + 30 ventilations** per minute.
-- This produces a different audible/haptic pattern than a plain 110/min compression beat.
-
-The app's Newborn mode should model this 3:1 cadence, not just a faster metronome. (An "Infant BLS"
-mode with 100–120/min and 30:2 or 15:2 may be added separately later — tracked in
-[`ROADMAP.md`](ROADMAP.md).)
+Resuscitation of a **newborn immediately after birth** (neonatal) is intentionally different: a
+**3:1 compression-to-ventilation ratio** at **120 events/min** (90 compressions + 30 ventilations).
+This is a distinct cadence, not a plain compression metronome. A separate neonatal mode could be
+added later — tracked in [`ROADMAP.md`](ROADMAP.md).
 
 ## Sources to cite when editing
 

@@ -17,8 +17,7 @@ Milestones for MetronomeCPR. Dates are aspirational; scope is the commitment.
 - [ ] Verified interactively in the Connect IQ simulator + on real hardware
 
 ## v0.3 — Patient modes + haptics
-- [x] Mode picker: Newborn / Child / Adult
-- [x] Newborn 3:1 cadence (90 comp + 30 breaths, 120 events/min)
+- [x] Mode picker: Adult / Child / Infant
 - [x] Vibration via `Attention.vibrate`
 - [x] Device capability detection (`Attention has :playTone` / `:vibrate`) with graceful fallback
 - [ ] Distinct tone/vibe for compression vs. ventilation confirmed on-device
@@ -40,7 +39,7 @@ Milestones for MetronomeCPR. Dates are aspirational; scope is the commitment.
 - [ ] Connect IQ Store submission (`.iq` package — see `docs/PUBLISHING.md`)
 
 ## Backlog / ideas
-- [ ] Separate "Infant BLS" mode (100–120/min, 30:2 or 15:2) distinct from neonatal Newborn
+- [ ] Separate neonatal mode (3:1 at 120 events/min) distinct from the Infant BLS mode
 - [ ] Two-rescuer toggle switching 30:2 ↔ 15:2 for child/infant
 - [ ] Voice/tone distinction between compression beat and "give breath" cue
 - [ ] Localization of on-screen strings

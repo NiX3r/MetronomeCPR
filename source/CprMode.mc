@@ -41,8 +41,7 @@ class CprMode {
     }
 
     // ── Factory helpers ──────────────────────────────────────────────────
-    // Adult / Child: 100-120/min, 30:2. We use 110/min (60000/110 = 545 ms).
-    // Newborn (neonatal): 3:1 at 120 events/min (90 comp + 30 breaths); 500 ms.
+    // All ages: 100-120/min, 30:2. We use 110/min (60000/110 = 545 ms).
 
     static function adult() as CprMode {
         return new CprMode(:adult, "Adult", 545, 30, 2, 110);
@@ -52,13 +51,13 @@ class CprMode {
         return new CprMode(:child, "Child", 545, 30, 2, 110);
     }
 
-    static function newborn() as CprMode {
-        return new CprMode(:newborn, "Newborn", 500, 3, 1, 120);
+    static function infant() as CprMode {
+        return new CprMode(:infant, "Infant", 545, 30, 2, 110);
     }
 
     //! All modes in menu order.
     static function all() as Lang.Array<CprMode> {
-        return [adult(), child(), newborn()];
+        return [adult(), child(), infant()];
     }
 
     //! Look up a mode by its Symbol key; returns null if not found.

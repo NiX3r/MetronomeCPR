@@ -4,7 +4,7 @@
   <img src="MetronomeCPR-small.png" alt="MetronomeCPR logo" width="140">
 </p>
 
-A **CPR metronome** for Garmin watches. Pick a patient type — **Newborn**, **Child**, or **Adult** —
+A **CPR metronome** for Garmin watches. Pick a patient type — **Infant**, **Child**, or **Adult** —
 and the watch beeps and/or vibrates in the correct rhythm to help you pace chest compressions
 during cardiopulmonary resuscitation.
 
@@ -37,7 +37,7 @@ Use at your own risk. See [`LICENSE`](LICENSE).
 
 ## What it does
 
-1. Select a patient type on the watch: **Newborn**, **Child**, or **Adult**.
+1. Select a patient type on the watch: **Infant**, **Child**, or **Adult**.
 2. Start the metronome.
 3. The watch emits a steady **beep** (tone) and/or **vibration** at the target compression rate.
 4. Optional cues help you track compression-to-ventilation cycles (e.g. 30:2).
@@ -46,11 +46,11 @@ Use at your own risk. See [`LICENSE`](LICENSE).
 
 ### Patient modes (defaults)
 
-| Mode        | Target rate            | Notes                                                        |
-|-------------|------------------------|-------------------------------------------------------------|
-| **Adult**   | 110 /min (100–120)     | Single-rescuer cycle 30:2                                    |
-| **Child**   | 110 /min (100–120)     | 30:2 single rescuer · 15:2 two rescuers                      |
-| **Newborn** | 120 events/min         | Neonatal resuscitation uses a **3:1** ratio (90 comp + 30 breaths) — a distinct rhythm from infant BLS |
+| Mode       | Target rate        | Notes                                   |
+| ---------- | ------------------ | --------------------------------------- |
+| **Adult**  | 110 /min (100–120) | Single-rescuer cycle 30:2               |
+| **Child**  | 110 /min (100–120) | 30:2 single rescuer · 15:2 two rescuers |
+| **Infant** | 110 /min (100–120) | 30:2 single rescuer · 15:2 two rescuers |
 
 Each mode currently uses a fixed rate (in-app configuration is planned — see
 [roadmap](docs/ROADMAP.md)). Rationale and sources are documented in

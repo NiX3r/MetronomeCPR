@@ -9,13 +9,13 @@ versions follow [Semantic Versioning](https://semver.org/).
 - Initial documentation scaffold: README, LICENSE (MIT + not-a-medical-device notice),
   `.gitignore`, `CONTRIBUTING.md`, `CHANGELOG.md`.
 - `docs/CPR-REFERENCE.md` — sourced rates, depths, and compression-to-ventilation ratios
-  for Adult / Child / Newborn modes.
+  for Adult / Child / Infant modes.
 - `docs/DEVICE-NOTES.md` — reference device (Instinct 2X Solar, `instinct2x`) hardware notes.
 - `docs/ROADMAP.md` — planned milestones through v1.0.
 - **Connect IQ application skeleton** (Monkey C), builds for `instinct2x`:
   - `manifest.xml`, `monkey.jungle`, `resources/` (strings, 62×62 monochrome launcher icon).
-  - Patient-type menu: **Adult / Child / Newborn** (`ModeMenu`).
-  - `CprMode` — per-mode rhythm model (Adult/Child 110/min 30:2; Newborn 3:1 at 120 events/min).
+  - Patient-type menu: **Adult / Child / Infant** (`ModeMenu`).
+  - `CprMode` — per-mode rhythm model (Adult / Child / Infant all 110/min, 30:2).
   - `Metronome` — repeating-timer engine emitting tone + vibration, capability-guarded
     (`Attention has :playTone` / `:vibrate`), tracking compression/ventilation cycle position.
   - `MetronomeView` — high-contrast running screen (beat indicator, PUSH/BREATHE cue,

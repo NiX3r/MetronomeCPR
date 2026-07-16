@@ -19,7 +19,7 @@ class MetronomeCprApp extends App.AppBase {
         Ui.requestUpdate();
     }
 
-    //! First view: the Adult / Child / Newborn picker.
+    //! First view: the Adult / Child / Infant picker.
     function getInitialView() {
         return [new ModeMenu(), new ModeMenuDelegate()];
     }

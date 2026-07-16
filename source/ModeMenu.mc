@@ -1,6 +1,6 @@
 using Toybox.WatchUi as Ui;
 
-//! Patient-type picker shown at launch: Adult / Child / Newborn.
+//! Patient-type picker shown at launch: Adult / Child / Infant.
 class ModeMenu extends Ui.Menu2 {
 
     function initialize() {
