@@ -11,8 +11,12 @@ declared in the manifest.
 ## Legend
 
 - **Compatible** — ✅ the app is built for and declared to support this device.
-- **Tested** — left blank on purpose. Put a ✅ (or your own note) in a row once you have run the app
-  on that physical device and confirmed the beat, feedback (beep / vibrate / flash) and layout.
+- **Tested** — ✅ the running-screen **layout** (beat page + info page, incl. Lat/Lon/MGRS) was verified
+  in the Connect IQ **simulator** for this device's screen geometry. The app draws from a per-geometry
+  layout, so one representative per unique shape+resolution covers every device that shares it. This is
+  a layout check, not a physical-hardware or feedback (beep/vibrate/flash) sign-off.
+  - ᵍ = verified via a sibling of the same layout family because this device's simulator profile would
+    not load; the scaled layout was confirmed on the sibling and the geometry fits.
 
 > Feedback channels degrade gracefully per hardware: **beep** needs `Attention has :playTone`,
 > **vibrate** needs `Attention has :vibrate`, **flash** uses the physical flashlight
@@ -38,7 +42,7 @@ declared in the manifest.
 | D2™ Mach 2 | 454 x 454 | round | AMOLED | 5.2 | ✅ |  |
 | D2™ Mach 2 Pro | 454 x 454 | round | AMOLED | 6.0 | ✅ |  |
 | Darth Vader™ | 260 x 260 | round | Memory-In-Pixel (64 colors) | 3.3 | ✅ |  |
-| Descent™ G1 / G1 Solar | 176 x 176 | semi-octagon | Memory-In-Pixel (2 colors) | 3.4 | ✅ |  |
+| Descent™ G1 / G1 Solar | 176 x 176 | semi-octagon | Memory-In-Pixel (2 colors) | 3.4 | ✅ | ✅ |
 | Descent™ G2 | 390 x 390 | round | AMOLED | 5.1 | ✅ |  |
 | Descent™ Mk1 | 240 x 240 | round | Memory-In-Pixel (64 colors) | 3.1 | ✅ |  |
 | Descent™ Mk2 / Mk2i | 280 x 280 | round | Memory-In-Pixel (64 colors) | 3.4 | ✅ |  |
@@ -100,16 +104,16 @@ declared in the manifest.
 | Forerunner® 955 / Solar | 260 x 260 | round | Memory-In-Pixel (64 colors) | 5.2 | ✅ |  |
 | Forerunner® 965 | 454 x 454 | round | AMOLED | 5.2 | ✅ |  |
 | Forerunner® 970 | 454 x 454 | round | AMOLED | 6.0 | ✅ |  |
-| Instinct® 2 / Solar / Dual Power / dēzl Edition | 176 x 176 | semi-octagon | Memory-In-Pixel (2 colors) | 3.4 | ✅ |  |
-| Instinct® 2S / Solar / Dual Power | 163 x 156 | semi-octagon | Memory-In-Pixel (2 colors) | 3.4 | ✅ |  |
-| Instinct® 2X Solar | 176 x 176 | semi-octagon | Memory-In-Pixel (2 colors) | 3.4 | ✅ |  |
+| Instinct® 2 / Solar / Dual Power / dēzl Edition | 176 x 176 | semi-octagon | Memory-In-Pixel (2 colors) | 3.4 | ✅ | ✅ |
+| Instinct® 2S / Solar / Dual Power | 163 x 156 | semi-octagon | Memory-In-Pixel (2 colors) | 3.4 | ✅ | ✅ ᵍ |
+| Instinct® 2X Solar | 176 x 176 | semi-octagon | Memory-In-Pixel (2 colors) | 3.4 | ✅ | ✅ |
 | Instinct® 3 AMOLED 45mm | 390 x 390 | round | AMOLED | 5.1 | ✅ |  |
 | Instinct® 3 AMOLED 50mm | 416 x 416 | round | AMOLED | 5.1 | ✅ |  |
-| Instinct® 3 Solar 45mm / 50mm | 176 x 176 | semi-octagon | Memory-In-Pixel (2 colors) | 5.1 | ✅ |  |
-| Instinct® Crossover | 176 x 176 | semi-octagon | Memory-In-Pixel (2 colors) | 3.4 | ✅ |  |
+| Instinct® 3 Solar 45mm / 50mm | 176 x 176 | semi-octagon | Memory-In-Pixel (2 colors) | 5.1 | ✅ | ✅ |
+| Instinct® Crossover | 176 x 176 | semi-octagon | Memory-In-Pixel (2 colors) | 3.4 | ✅ | ✅ |
 | Instinct® Crossover AMOLED | 390 x 390 | round | AMOLED | 5.1 | ✅ |  |
-| Instinct® E 40mm | 166 x 166 | semi-octagon | Memory-In-Pixel (2 colors) | 5.1 | ✅ |  |
-| Instinct® E 45mm | 176 x 176 | semi-octagon | Memory-In-Pixel (2 colors) | 5.1 | ✅ |  |
+| Instinct® E 40mm | 166 x 166 | semi-octagon | Memory-In-Pixel (2 colors) | 5.1 | ✅ | ✅ |
+| Instinct® E 45mm | 176 x 176 | semi-octagon | Memory-In-Pixel (2 colors) | 5.1 | ✅ | ✅ |
 | MARQ® (Gen 2) Athlete / Adventurer / Captain / Golfer / Carbon Edition / Commander - Carbon Edition | 390 x 390 | round | AMOLED | 5.2 | ✅ |  |
 | MARQ® (Gen 2) Aviator | 390 x 390 | round | AMOLED | 5.2 | ✅ |  |
 | MARQ® Adventurer | 240 x 240 | round | Memory-In-Pixel (64 colors) | 3.4 | ✅ |  |
