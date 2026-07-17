@@ -121,8 +121,9 @@ class MetronomeView extends Ui.View {
             dc.drawText(L.mainCx, L.infoAcqY, Gfx.FONT_TINY, "Acquiring GPS…", Gfx.TEXT_JUSTIFY_CENTER);
         }
 
-        // How to stop (single buttons are blocked to avoid accidental stops).
-        dc.drawText(L.mainCx, L.hintY, Gfx.FONT_XTINY, "Stop: hold GPS+ABC", Gfx.TEXT_JUSTIFY_CENTER);
+        // How to stop (single presses are blocked to avoid accidental stops).
+        var stopHint = L.isTouch ? "Stop: hold screen" : "Stop: hold 2 buttons";
+        dc.drawText(L.mainCx, L.hintY, Gfx.FONT_XTINY, stopHint, Gfx.TEXT_JUSTIFY_CENTER);
 
         drawElapsed(dc);
     }

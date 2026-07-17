@@ -22,6 +22,10 @@ class Layout {
     public var w;
     public var h;
 
+    // Touch screen present — selects the stop gesture / hint (touch hold vs
+    // two-button hold) on the running screen.
+    public var isTouch;
+
     // Small round sub-display (Instinct semi-octagon only). false elsewhere.
     public var hasSub;
     public var subCx;
@@ -53,6 +57,7 @@ class Layout {
         var ds = System.getDeviceSettings();
         w = ds.screenWidth;
         h = ds.screenHeight;
+        isTouch = (ds has :isTouchScreen) && ds.isTouchScreen;
 
         initFamily(ds.screenShape);
         applyDeviceOverride(ds.partNumber);

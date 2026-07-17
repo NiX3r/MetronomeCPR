@@ -1,55 +1,65 @@
 using Toybox.WatchUi as Ui;
+using Toybox.System;
 
 //! Input handling on the running screen.
 //!
-//! To avoid accidentally stopping CPR, the metronome cannot be stopped with a
-//! single button:
-//!   START/STOP (GPS / ENTER)  — starts the metronome; does NOT stop it.
-//!   UP / DOWN                 — switch between the beat page and the info page.
-//!   BACK (SET / ESC)          — ignored while running (would otherwise exit).
-//!   GPS + ABC held together   — the deliberate two-button stop: stops the
-//!     rhythm and returns to the patient-type menu. On the Instinct 2X Solar
-//!     these are on opposite sides (ENTER = GPS, DOWN = ABC), so they are hard
-//!     to press by accident.
+//! CPR must not be stopped by a single accidental press, but every watch must
+//! still be able to leave it. Two devices classes need different gestures:
+//!
+//!   START/STOP (select)  — starts the metronome; never stops it.
+//!   UP / DOWN            — switch between the beat page and the info page.
+//!   BACK                 — ignored while running (a single press won't exit).
+//!
+//! Deliberate stop, whichever the hardware allows:
+//!   • Any TWO buttons held at once — works on every multi-button watch. On
+//!     5-button watches (Instinct / fēnix / Forerunner) the user can pick two
+//!     on opposite sides so it can't happen by accident.
+//!   • Press-and-hold the touchscreen — for touch watches whose buttons are all
+//!     on one side (or that have a single button), where two opposite buttons
+//!     aren't possible.
 //!
 //! Paging only changes what is drawn; the rhythm keeps running regardless.
 class MetronomeDelegate extends Ui.BehaviorDelegate {
 
     hidden var _metro;
     hidden var _view;
-    hidden var _enterDown;   // GPS button currently held
-    hidden var _abcDown;     // ABC button currently held
+    hidden var _pressed;   // set of currently-held key codes
 
     function initialize(metro, view) {
         BehaviorDelegate.initialize();
         _metro = metro;
         _view = view;
-        _enterDown = false;
-        _abcDown = false;
+        _pressed = {};
     }
 
-    //! Raw key-down: track the two combo keys; fire the stop when both are held.
+    //! Raw key-down: two buttons held simultaneously is the deliberate stop.
     function onKeyPressed(evt) {
-        var k = evt.getKey();
-        if (k == Ui.KEY_ENTER) { _enterDown = true; }
-        if (k == Ui.KEY_DOWN)  { _abcDown = true; }
-
-        if (_enterDown && _abcDown) {
-            stopCombo();
+        _pressed.put(evt.getKey(), true);
+        if (_metro.isRunning() && _pressed.size() >= 2) {
+            stopCpr();
             return true;   // consume: don't also start / page
         }
-        return false;      // otherwise let the normal behavior fire
+        return false;      // single key: let the normal behavior fire
     }
 
-    //! Raw key-up: clear the held state.
+    //! Raw key-up: forget the released key.
     function onKeyReleased(evt) {
-        var k = evt.getKey();
-        if (k == Ui.KEY_ENTER) { _enterDown = false; }
-        if (k == Ui.KEY_DOWN)  { _abcDown = false; }
+        _pressed.remove(evt.getKey());
         return false;
     }
 
-    //! GPS single press: start only — never stops (that needs the combo).
+    //! Touch press-and-hold: the deliberate stop on touch watches (a plain tap
+    //! does nothing). A hold is hard to trigger by accident during compressions.
+    function onHold(evt) {
+        if (_metro.isRunning()) {
+            stopCpr();
+            return true;
+        }
+        return false;
+    }
+
+    //! Select / START single press: start only — never stops (that needs the
+    //! two-button hold or a touch hold).
     function onSelect() {
         if (!_metro.isRunning()) {
             _metro.start();
@@ -68,7 +78,7 @@ class MetronomeDelegate extends Ui.BehaviorDelegate {
         return true;
     }
 
-    //! Plain BACK must not stop a running session; use the GPS + ABC combo.
+    //! Plain BACK must not stop a running session; use a two-button or touch hold.
     function onBack() {
         if (_metro.isRunning()) {
             return true;   // ignore
@@ -77,10 +87,9 @@ class MetronomeDelegate extends Ui.BehaviorDelegate {
         return true;
     }
 
-    //! Deliberate two-button stop: end the rhythm and return to the menu.
-    hidden function stopCombo() {
-        _enterDown = false;
-        _abcDown = false;
+    //! End the rhythm and return to the patient-type menu.
+    hidden function stopCpr() {
+        _pressed = {};
         _metro.stop();
         Ui.popView(Ui.SLIDE_RIGHT);
     }
