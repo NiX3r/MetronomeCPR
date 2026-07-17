@@ -2,14 +2,17 @@
 <!--
     Connect IQ app settings. These appear as the app's "settings" gear in the
     Connect IQ mobile app / Garmin Connect, and (once changed) sync to the watch.
-    The same value can also be edited on-device via the in-app Settings menu.
+    The same values can also be edited on-device via the in-app Settings menu.
+    Each feedback channel is an independent on/off toggle.
 -->
 <settings>
-    <setting propertyKey="@Properties.feedbackMode" title="@Strings.SettingFeedback">
-        <settingConfig type="list">
-            <listEntry value="0">@Strings.FeedbackBeep</listEntry>
-            <listEntry value="1">@Strings.FeedbackVibrate</listEntry>
-            <listEntry value="2">@Strings.FeedbackBoth</listEntry>
-        </settingConfig>
+    <setting propertyKey="@Properties.beepOn" title="@Strings.SettingBeep">
+        <settingConfig type="boolean" />
+    </setting>
+    <setting propertyKey="@Properties.vibrateOn" title="@Strings.SettingVibrate">
+        <settingConfig type="boolean" />
+    </setting>
+    <setting propertyKey="@Properties.flashOn" title="@Strings.SettingFlash">
+        <settingConfig type="boolean" />
     </setting>
 </settings>

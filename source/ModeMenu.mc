@@ -41,8 +41,8 @@ class ModeMenuDelegate extends Ui.Menu2InputDelegate {
         if (mode == null) {
             return;
         }
-        // Feedback (beep / vibrate / both) comes from settings; capability-guarded at play time.
-        var metro = new Metronome(mode, Settings.useTone(), Settings.useVibe());
+        // Feedback channels (beep / vibrate / flash) come from settings; each is capability-guarded at play time.
+        var metro = new Metronome(mode, Settings.useTone(), Settings.useVibe(), Settings.useFlash());
         var view = new MetronomeView(metro);
         Ui.pushView(view, new MetronomeDelegate(metro, view), Ui.SLIDE_LEFT);
     }

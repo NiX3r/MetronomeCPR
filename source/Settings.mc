@@ -3,60 +3,37 @@ using Toybox.WatchUi as Ui;
 using Toybox.Lang;
 
 //! Central access to user settings, backed by Connect IQ app properties.
-//! Values are configurable from the phone (resources/settings/settings.xml) and
-//! on-device (SettingsMenu); both read/write the same property keys.
+//! Feedback is three independent channels — beep, vibrate, flash — any
+//! combination may be on. Values are editable from the phone
+//! (resources/settings/settings.xml) and on-device (SettingsMenu); both
+//! read/write the same property keys.
 module Settings {
 
-    // feedbackMode property values
-    enum {
-        FEEDBACK_BEEP    = 0,
-        FEEDBACK_VIBRATE = 1,
-        FEEDBACK_BOTH    = 2
-    }
-
-    function feedbackMode() {
-        return clamp(readNum("feedbackMode", FEEDBACK_BOTH), 0, 2);
-    }
-
-    //! Whether tone / vibration should fire, derived from feedbackMode.
-    function useTone() {
-        var m = feedbackMode();
-        return (m == FEEDBACK_BEEP || m == FEEDBACK_BOTH);
-    }
-    function useVibe() {
-        var m = feedbackMode();
-        return (m == FEEDBACK_VIBRATE || m == FEEDBACK_BOTH);
-    }
-
-    //! Human-readable label for a feedback mode value.
-    function feedbackLabel(m) {
-        if (m == FEEDBACK_BEEP)    { return Ui.loadResource(Rez.Strings.FeedbackBeep); }
-        if (m == FEEDBACK_VIBRATE) { return Ui.loadResource(Rez.Strings.FeedbackVibrate); }
-        return Ui.loadResource(Rez.Strings.FeedbackBoth);
-    }
+    //! Whether the beat should beep (device speaker permitting).
+    function useTone()  { return readBool("beepOn", true); }
+    //! Whether the beat should vibrate (device motor permitting).
+    function useVibe()  { return readBool("vibrateOn", true); }
+    //! Whether the beat should blink the flashlight / backlight.
+    function useFlash() { return readBool("flashOn", false); }
 
     function setValue(key, value) {
         Application.Properties.setValue(key, value);
     }
 
-    function readNum(key, def) {
+    //! Read a boolean property, tolerating the number / string forms that the
+    //! phone settings or older builds may have stored.
+    function readBool(key, def) {
         var v = null;
         try {
             v = Application.Properties.getValue(key);
         } catch (e) {
             v = null;
         }
-        if (v == null) { return def; }
-        if (v instanceof Lang.Number) { return v; }
-        if (v instanceof Lang.Float)  { return v.toNumber(); }
-        if (v instanceof Lang.String) { return v.toNumber(); }
+        if (v == null)                 { return def; }
+        if (v instanceof Lang.Boolean) { return v; }
+        if (v instanceof Lang.Number)  { return v != 0; }
+        if (v instanceof Lang.Float)   { return v != 0.0; }
+        if (v instanceof Lang.String)  { return v.equals("true") || v.equals("1"); }
         return def;
-    }
-
-    function clamp(v, lo, hi) {
-        if (v == null) { return lo; }
-        if (v < lo)    { return lo; }
-        if (v > hi)    { return hi; }
-        return v;
     }
 }

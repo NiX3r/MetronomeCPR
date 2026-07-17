@@ -35,10 +35,16 @@ versions follow [Semantic Versioning](https://semver.org/).
   together (ENTER + DOWN — opposite sides of the Instinct 2X). A single GPS press only *starts*;
   plain BACK is ignored while running. The info page shows a "Stop: hold GPS+ABC" hint.
 - Distinct feedback for compressions vs. ventilations (louder tone / longer buzz on breaths).
-- **Settings** — configurable feedback mode (beep / vibrate / both), editable both **on-device**
-  (in-app Settings menu) and from the **phone** (Connect IQ app settings via `resources/settings/`).
-  Backed by a `Settings` module over CIQ properties. (Rate / ratio settings were prototyped and then
-  removed — each mode's rate stays fixed per protocol.)
+- **Light/flash feedback** — the watch blinks its light in time with the beat. Prefers the physical
+  **flashlight** (`Attention.setFlashlightMode`, e.g. Instinct 2X Solar) and falls back to the screen
+  **backlight** on watches without one; both capability-guarded, and the light is always turned off on
+  stop. A short one-shot timer ends each blink so it reads as a strobe against the beat.
+- **Settings** — three independent feedback channels, **Beep / Vibrate / Flash**, each an on/off
+  toggle (any combination). Editable both **on-device** (in-app Settings menu, `ToggleMenuItem`s) and
+  from the **phone** (Connect IQ app settings via `resources/settings/`). Backed by a `Settings` module
+  over CIQ boolean properties (`beepOn` / `vibrateOn` / `flashOn`; replaced the earlier single
+  beep/vibrate/both list). (Rate / ratio settings were prototyped and then removed — each mode's rate
+  stays fixed per protocol.)
 - App logo / store icon: `MetronomeCPR.png` (1254×1254) and `MetronomeCPR-small.png` (500×500).
 - `store/screenshots/` — five 176×176 Connect IQ Store screenshots.
 - `docs/PUBLISHING.md` — how to build the `.iq` package and submit to the Connect IQ Store.

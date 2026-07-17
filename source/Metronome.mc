@@ -4,12 +4,17 @@ using Toybox.WatchUi as Ui;
 using Toybox.System;
 
 //! Drives the CPR rhythm: a repeating timer that fires beats and produces
-//! tone / vibration feedback, while tracking position within the
+//! tone / vibration / light feedback, while tracking position within the
 //! compression:ventilation cycle for the UI to display.
 class Metronome {
 
+    //! How long the light stays on for each blink (ms). Short enough to be a
+    //! crisp strobe against the ~545 ms beat interval, long enough to see.
+    const FLASH_MS = 120;
+
     hidden var _mode;
     hidden var _timer;
+    hidden var _flashTimer;    // one-shot: turns the light back off after a blink
     hidden var _running;
     hidden var _beatInCycle;   // 0-based beat index within the current cycle
     hidden var _cycleCount;    // number of completed cycles
@@ -19,12 +24,15 @@ class Metronome {
     hidden var _startMin;      // wall-clock minute at start
     hidden var _useTone;
     hidden var _useVibe;
+    hidden var _useFlash;
 
-    function initialize(mode, useTone, useVibe) {
+    function initialize(mode, useTone, useVibe, useFlash) {
         _mode = mode;
         _useTone = useTone;
         _useVibe = useVibe;
+        _useFlash = useFlash;
         _timer = new Timer.Timer();
+        _flashTimer = new Timer.Timer();
         resetState();
     }
 
@@ -76,6 +84,8 @@ class Metronome {
     function stop() {
         if (!_running) { return; }
         _timer.stop();
+        _flashTimer.stop();
+        lightOff();               // never leave the light stuck on
         _running = false;
     }
 
@@ -97,8 +107,9 @@ class Metronome {
         Ui.requestUpdate();
     }
 
-    //! Produce tone and/or vibration, guarded by device capability so the
-    //! same build runs on watches lacking a speaker or vibration motor.
+    //! Produce tone, vibration and/or a light blink for this beat, each guarded
+    //! by its setting and device capability so the same build runs on watches
+    //! lacking a speaker, vibration motor or flashlight.
     hidden function fireFeedback(evt) {
         var isComp = (evt == CprMode.EVENT_COMPRESSION);
 
@@ -109,6 +120,43 @@ class Metronome {
         if (_useVibe && (Attention has :vibrate)) {
             var dur = isComp ? 80 : 200;
             Attention.vibrate([new Attention.VibeProfile(75, dur)]);
+        }
+        if (_useFlash) {
+            lightOn();
+        }
+    }
+
+    //! Blink the light for one beat: turn it on now, schedule it off. Prefers
+    //! the physical flashlight (e.g. Instinct 2X Solar); falls back to the
+    //! screen backlight on watches without one. Both are capability-guarded and
+    //! wrapped in try/catch — the flashlight can be busy or unavailable, and
+    //! backlight can throw on burn-in-protected displays.
+    hidden function lightOn() {
+        try {
+            if (Attention has :setFlashlightMode) {
+                Attention.setFlashlightMode(Attention.FLASHLIGHT_MODE_ON,
+                    {:brightness => Attention.FLASHLIGHT_BRIGHTNESS_HIGH});
+            } else if (Attention has :backlight) {
+                Attention.backlight(true);
+            } else {
+                return;
+            }
+            _flashTimer.stop();
+            _flashTimer.start(method(:lightOff), FLASH_MS, false);
+        } catch (e) {
+            // Light unavailable this beat; skip it.
+        }
+    }
+
+    //! Turn the light back off. Public so the one-shot flash timer can call it.
+    function lightOff() {
+        try {
+            if (Attention has :setFlashlightMode) {
+                Attention.setFlashlightMode(Attention.FLASHLIGHT_MODE_OFF, null);
+            } else if (Attention has :backlight) {
+                Attention.backlight(false);
+            }
+        } catch (e) {
         }
     }
 }

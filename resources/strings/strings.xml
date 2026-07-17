@@ -5,9 +5,7 @@
     <string id="MenuSettings">Settings</string>
 
     <string id="SettingsTitle">Settings</string>
-    <string id="SettingFeedback">Feedback</string>
-
-    <string id="FeedbackBeep">Beep</string>
-    <string id="FeedbackVibrate">Vibrate</string>
-    <string id="FeedbackBoth">Beep + Vibrate</string>
+    <string id="SettingBeep">Beep</string>
+    <string id="SettingVibrate">Vibrate</string>
+    <string id="SettingFlash">Flash light</string>
 </strings>

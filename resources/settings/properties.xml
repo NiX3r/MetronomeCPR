@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Default values for the app settings above. -->
+<!-- Default values for the app settings above. Each feedback channel is independent. -->
 <properties>
-    <property id="feedbackMode" type="number">2</property>          <!-- 0=beep, 1=vibrate, 2=both -->
+    <property id="beepOn"    type="boolean">true</property>   <!-- speaker tone on each beat -->
+    <property id="vibrateOn" type="boolean">true</property>   <!-- vibration on each beat -->
+    <property id="flashOn"   type="boolean">false</property>  <!-- blink the flashlight/backlight on each beat -->
 </properties>
