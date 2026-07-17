@@ -134,11 +134,11 @@ declared in the manifest.
 | Venu® 4 41mm | 390 x 390 | round | AMOLED | 6.0 | ✅ | ✅ |
 | Venu® 4 45mm / D2™ Air X15 | 454 x 454 | round | AMOLED | 6.0 | ✅ | ✅ |
 | Venu® Mercedes-Benz® Collection | 390 x 390 | round | AMOLED | 3.3 | ✅ | ✅ |
-| Venu® Sq | 240 x 240 | rectangle | Transflective Liquid-Crystal (High Color) | 3.3 | ✅ |  |
-| Venu® Sq 2 | 320 x 360 | rectangle | AMOLED | 5.0 | ✅ |  |
-| Venu® Sq 2 Music | 320 x 360 | rectangle | AMOLED | 5.0 | ✅ |  |
-| Venu® Sq. Music Edition | 240 x 240 | rectangle | Transflective Liquid-Crystal (High Color) | 3.3 | ✅ |  |
-| Venu® X1 | 448 x 486 | rectangle | AMOLED | 6.0 | ✅ |  |
+| Venu® Sq | 240 x 240 | rectangle | Transflective Liquid-Crystal (High Color) | 3.3 | ✅ | ✅ |
+| Venu® Sq 2 | 320 x 360 | rectangle | AMOLED | 5.0 | ✅ | ✅ |
+| Venu® Sq 2 Music | 320 x 360 | rectangle | AMOLED | 5.0 | ✅ | ✅ |
+| Venu® Sq. Music Edition | 240 x 240 | rectangle | Transflective Liquid-Crystal (High Color) | 3.3 | ✅ | ✅ |
+| Venu® X1 | 448 x 486 | rectangle | AMOLED | 6.0 | ✅ | ✅ |
 | vívoactive® 3 | 240 x 240 | round | Memory-In-Pixel (64 colors) | 3.1 | ✅ | ✅ |
 | vívoactive® 3 Mercedes-Benz® Collection | 240 x 240 | round | Memory-In-Pixel (64 colors) | 3.0 | ✅ | ✅ |
 | vívoactive® 3 Music | 240 x 240 | round | Memory-In-Pixel (64 colors) | 3.2 | ✅ | ✅ |
