@@ -27,7 +27,10 @@ class Layout {
         var semiOctagon = (ds.screenShape == System.SCREEN_SHAPE_SEMI_OCTAGON);
         if (semiOctagon || (w == 176 && h == 176)) {
             hasSub = true;
-            subCx = 144;  subCy = 32;  subR = 31;
+            // Anchor the sub-display to the top-right so it stays in place on the
+            // smaller Instinct variants (2S 163x156, E 40mm 166x166) too. On the
+            // 176x176 reference device this evaluates to the original 144,32,31.
+            subCx = w - 32;  subCy = 32;  subR = 31;
         } else {
             hasSub = false;
             subCx = 0;  subCy = 0;  subR = 0;

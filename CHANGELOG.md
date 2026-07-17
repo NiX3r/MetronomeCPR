@@ -45,6 +45,13 @@ versions follow [Semantic Versioning](https://semver.org/).
   over CIQ boolean properties (`beepOn` / `vibrateOn` / `flashOn`; replaced the earlier single
   beep/vibrate/both list). (Rate / ratio settings were prototyped and then removed — each mode's rate
   stays fixed per protocol.)
+- **Broad device support** — the manifest now targets **120 Connect IQ devices** (every device in the
+  SDK at API level ≥ 3.0.0, the floor for the Menu2 / ToggleMenuItem UI), up from Instinct 2X Solar
+  only. The product list was generated from `compatible_devices.csv` matched against the SDK device set;
+  devices below 3.0 and products absent from this SDK (e.g. Forerunner 70 / 170) were left out. The
+  sub-display anchor is now derived from screen width so it holds on the smaller Instinct 2S / E screens.
+  Builds verified across all 22 locally-installed profiles (semi-octagon / round, 156–454 px, MIP &
+  AMOLED, API 3.3–6.0); the 3.0–3.2 devices are included but not built locally.
 - App logo / store icon: `MetronomeCPR.png` (1254×1254) and `MetronomeCPR-small.png` (500×500).
 - `store/screenshots/` — five 176×176 Connect IQ Store screenshots.
 - `docs/PUBLISHING.md` — how to build the `.iq` package and submit to the Connect IQ Store.
@@ -52,7 +59,12 @@ versions follow [Semantic Versioning](https://semver.org/).
 
 ### Changed
 - Shrank the 62×62 monochrome launcher icon so the heart fits inside the Instinct's round icon frame.
+- **New application id (UUID).** Changing it makes this a fresh app in the Connect IQ Store (no shared
+  listing/reviews with the previous id).
 
 ### Notes
-- Compiles clean (no warnings) against Connect IQ SDK 9.2.0 for the Instinct 2X Solar.
+- Compiles clean against Connect IQ SDK 9.2.0 for all 22 locally-installed device profiles.
 - Sideloaded to an Instinct 2X Solar; interactive behavior on real hardware still to be verified/tuned.
+- The single 62×62 launcher icon is auto-scaled to each device's icon size (per-device launcher icons
+  could be added later); the Instinct beat/info screens are pixel-tuned for 176 px and only width-scaled
+  on the smaller Instinct variants.
