@@ -122,7 +122,16 @@ class MetronomeView extends Ui.View {
         }
 
         // How to stop (single presses are blocked to avoid accidental stops).
-        var stopHint = L.isTouch ? "Stop: hold screen" : "Stop: hold 2 buttons";
+        // Name concrete buttons per hardware; any two still work, this is one
+        // clear pair. Kept short so it fits the Instinct semi-octagon's bottom.
+        var stopHint;
+        if (L.isTouch) {
+            stopHint = "Stop: hold screen";
+        } else if (L.hasSub) {
+            stopHint = "Stop: GPS + ABC";       // Instinct: top-right + bottom-left
+        } else {
+            stopHint = "Stop: START + BACK";
+        }
         dc.drawText(L.mainCx, L.hintY, Gfx.FONT_XTINY, stopHint, Gfx.TEXT_JUSTIFY_CENTER);
 
         drawElapsed(dc);

@@ -100,7 +100,7 @@ class Layout {
             cueY = 116;    countY = 140;  dotsY = 170;
             infoStartY = 66;                          // first info row below the sub
             infoLatY = 90;   infoLonY = 105;   infoAcqY = 100;
-            mgrsLabelY = 121;  mgrsValueY = 135;  hintY = 151;
+            mgrsLabelY = 119;  mgrsValueY = 133;  hintY = 147;   // hint clear of the bottom cut
         } else {
             // Smaller semi-octagon: scale to fit. Sub shrinks with the screen and
             // stays in the top-right; the column keeps the 176 proportions.
@@ -119,9 +119,9 @@ class Layout {
             infoLatY   = (h * 0.53).toNumber();
             infoLonY   = (h * 0.62).toNumber();
             infoAcqY   = (h * 0.58).toNumber();
-            mgrsLabelY = (h * 0.71).toNumber();
-            mgrsValueY = (h * 0.80).toNumber();
-            hintY      = (h * 0.88).toNumber();
+            mgrsLabelY = (h * 0.70).toNumber();
+            mgrsValueY = (h * 0.79).toNumber();
+            hintY      = (h * 0.86).toNumber();
         }
     }
 
