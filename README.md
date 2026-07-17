@@ -98,14 +98,22 @@ Each mode's rate and compression:ventilation ratio are fixed per protocol (see t
 
 ## Supported devices
 
-The goal is **all Garmin watches** that run Connect IQ. Actual behavior depends on hardware:
+The goal is **all Garmin watches** that run Connect IQ. The manifest currently targets
+**120 devices** — every device in the SDK at Connect IQ **API level ≥ 3.0.0** (the floor for the
+`Menu2` / `ToggleMenuItem` UI). See the full list, with a column to tick off devices as you test them:
+
+**➡️ [`docs/COMPATIBLE-DEVICES.md`](docs/COMPATIBLE-DEVICES.md)**
+
+Actual behavior depends on hardware, detected at runtime:
 
 - **Tone / beep** requires `Toybox.Attention has :playTone` and a device with a beeper/speaker.
 - **Vibration** requires `Toybox.Attention has :vibrate` and a vibration motor.
+- **Flash** uses the physical flashlight (`Toybox.Attention has :setFlashlightMode`) where present,
+  else the screen backlight.
 
-Devices lacking one modality use the other. The concrete target list lives in
-[`manifest.xml`](manifest.xml) — it currently declares **`instinct2x`** only; more `<iq:product>`
-entries are added to widen coverage toward the "all watches" goal.
+Devices lacking one channel simply use the others. The concrete target list lives in
+[`manifest.xml`](manifest.xml) (`<iq:product>` entries) and is documented in
+[`docs/COMPATIBLE-DEVICES.md`](docs/COMPATIBLE-DEVICES.md).
 
 ### Reference (first) device
 
